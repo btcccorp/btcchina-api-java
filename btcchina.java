@@ -40,7 +40,19 @@ class BTCChinaApiAuthentication{
 	public static void main(String args[]) throws Exception{
 	 
 		String tonce = ""+(System.currentTimeMillis() * 1000);
+
+		//查询账户信息
 		String params = "tonce="+tonce.toString()+"&accesskey="+ACCESS_KEY+"&requestmethod=post&id=1&method=getAccountInfo&params=";
+
+		//buyOrder2市价单//
+//		String params = "tonce="+tonce.toString()+"&accesskey="+ACCESS_KEY+"&requestmethod=post&id=1&method=buyOrder2&params=,0.0010";
+		
+		//buyOrder2限价单
+//		String params = "tonce="+tonce.toString()+"&accesskey="+ACCESS_KEY+"&requestmethod=post&id=1&method=buyOrder2&params=4,0.01";
+
+        //cancelOrder
+//		String params = "tonce="+tonce.toString()+"&accesskey="+ACCESS_KEY+"&requestmethod=post&id=1&method=cancelOrder&params=10000";
+
 		String hash = getSignature(params, SECRET_KEY);
 		 
 		String url = "https://api.btcchina.com/api_trade_v1.php";
@@ -55,6 +67,15 @@ class BTCChinaApiAuthentication{
 		con.setRequestProperty ("Authorization", basicAuth);
 		 
 		String postdata = "{\"method\": \"getAccountInfo\", \"params\": [], \"id\": 1}";
+
+		//buyOrder2市价单//
+//		String postdata = "{\"method\": \"buyOrder2\", \"params\": [null,\"0.0010\"], \"id\": 1}";
+	
+		//buyOrder2限价单
+//		String postdata = "{\"method\": \"buyOrder2\", \"params\": [4,\"0.01\"], \"id\": 1}";
+		
+		//cancelOrder
+//		String postdata = "{\"method\": \"cancelOrder\", \"params\": [10000], \"id\": 1}";
 		 
 		// Send post request
 		con.setDoOutput(true);
